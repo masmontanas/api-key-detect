@@ -1,7 +1,7 @@
 import sys, os, re, itertools
 
-ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem']
-api_key_min_entropy_ratio = 0.6
+ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem','env','README.md']
+api_key_min_entropy_ratio = 0.5
 api_key_min_length = 7
 
 def pairwise(iterable):
@@ -43,8 +43,9 @@ def scan_file(path_to_file):
 	for line in f:
 		result = line_contains_api_key(line)
 		if result[0]:
-			print('\033[1m' + path_to_file + ' : Line ' + str(number) + ' : Entropy ' + str(result[1]) + '\033[0m')
+			print(path_to_file + ' : Line ' + str(number) + ' : Entropy ' + str(result[1]))
 			print(line)
+			results.append(line)
 		number += 1
 
 def scan_dir(path):
@@ -74,6 +75,9 @@ if __name__ == "__main__":
 	print('Scanning directory: ' + path)
 	print('Ignoring: ' + str(ignored))
 	print('For tokens with minimum entropy ratio: ' + str(api_key_min_entropy_ratio))
-
+	results = []
 	scan_dir(path)
+	if len(results) != 0:
+		print('Possible matches found')
+		sys.exit(1)
 	
