@@ -1,7 +1,7 @@
 import sys, os, re, itertools
 
 ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem','env','README.md']
-api_key_min_entropy_ratio = 0.5
+api_key_min_entropy_ratio = 0.4
 api_key_min_length = 7
 
 def pairwise(iterable):
@@ -77,7 +77,8 @@ if __name__ == "__main__":
 	print('For tokens with minimum entropy ratio: ' + str(api_key_min_entropy_ratio))
 	results = []
 	scan_dir(path)
-	if len(results) != 0:
-		print('Possible matches found')
+	results_count = len(results)
+	if results_count != 0:
+		print('{} Possible matches found'.format(results_count))
 		sys.exit(1)
 	
