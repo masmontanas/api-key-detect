@@ -8,7 +8,7 @@ class TestCase(unittest.TestCase):
 
     def test_api_key_detection(self):
         key_count = scan_for_keys(basedir)
-        assert key_count >= 3
+        assert key_count >= 2
 
 
 if __name__ == '__main__':
