@@ -1,8 +1,9 @@
 import sys, os, re, itertools
 
-ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem','env','README.md']
-api_key_min_entropy_ratio = 0.5
+ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem','env','README.md','__pycache__','tests.py']
+api_key_min_entropy_ratio = 0.4
 api_key_min_length = 7
+RESULTS = []
 
 def pairwise(iterable):
     "s -> (s0,s1), (s1,s2), (s2, s3), ..."
@@ -45,8 +46,9 @@ def scan_file(path_to_file):
 		if result[0]:
 			print(path_to_file + ' : Line ' + str(number) + ' : Entropy ' + str(result[1]))
 			print(line)
-			results.append(line)
+			RESULTS.append(line)
 		number += 1
+	f.close()
 
 def scan_dir(path):
 	"""
@@ -66,18 +68,22 @@ def scan_dir(path):
 			if not skip:
 				scan_file(fullpath)
 
+def scan_for_keys(path):
+	print('Scanning directory: ' + path)
+	print('Ignoring: ' + str(ignored))
+	print('For tokens with minimum entropy ratio: ' + str(api_key_min_entropy_ratio))
+	scan_dir(path)
+	results_count = len(RESULTS)
+	if results_count != 0:
+		print('{} Possible matches found'.format(results_count))
+		return results_count
+
 if __name__ == "__main__":
 	if len(sys.argv) == 1:
 		print('Please specify path.')
 		sys.exit(0)
 
 	path = str(sys.argv[1])
-	print('Scanning directory: ' + path)
-	print('Ignoring: ' + str(ignored))
-	print('For tokens with minimum entropy ratio: ' + str(api_key_min_entropy_ratio))
-	results = []
-	scan_dir(path)
-	if len(results) != 0:
-		print('Possible matches found')
+	results_count = scan_for_keys(path)
+	if results_count != 0:
 		sys.exit(1)
-	

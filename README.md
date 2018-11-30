@@ -1,5 +1,10 @@
 This repository was forked from [dayleen/api-key-detect](https://github.com/daylen/api-key-detect) to support python3.
 
+| branch | status |
+| ------------- |:-------------:| 
+| master  | [![Build Status](https://travis-ci.org/masmontanas/api-key-detect.svg?branch=master)](https://travis-ci.org/masmontanas/api-key-detect) |
+| dev     | [![Build Status](https://travis-ci.org/masmontanas/api-key-detect.svg?branch=master)](https://travis-ci.org/masmontanas/api-key-detect) | 
+
 # API Key Detect
 
 This script scans a codebase for API keys and passwords. Perfect for scrubbing private data from source code that you will be open sourcing.
