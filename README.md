@@ -1,3 +1,5 @@
+This repository was forked from [dayleen/api-key-detect](https://github.com/daylen/api-key-detect) to support python3.
+
 # API Key Detect
 
 This script scans a codebase for API keys and passwords. Perfect for scrubbing private data from source code that you will be open sourcing.
