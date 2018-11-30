@@ -1,7 +1,7 @@
 import sys, os, re, itertools
 
-ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc']
-api_key_min_entropy_ratio = 0.5
+ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem']
+api_key_min_entropy_ratio = 0.6
 api_key_min_length = 7
 
 def pairwise(iterable):
