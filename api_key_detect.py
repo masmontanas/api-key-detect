@@ -45,6 +45,7 @@ def scan_file(path_to_file):
 		if result[0]:
 			print(path_to_file + ' : Line ' + str(number) + ' : Entropy ' + str(result[1]))
 			print(line)
+			results.append(line)
 		number += 1
 
 def scan_dir(path):
@@ -74,6 +75,9 @@ if __name__ == "__main__":
 	print('Scanning directory: ' + path)
 	print('Ignoring: ' + str(ignored))
 	print('For tokens with minimum entropy ratio: ' + str(api_key_min_entropy_ratio))
-
+	results = []
 	scan_dir(path)
+	if len(results) != 0:
+		print('Possible matches found')
+		sys.exit(1)
 	
