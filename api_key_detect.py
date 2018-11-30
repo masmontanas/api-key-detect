@@ -84,4 +84,6 @@ if __name__ == "__main__":
 		sys.exit(0)
 
 	path = str(sys.argv[1])
-	scan_for_keys(path)
+	results_count = scan_for_keys(path)
+	if results_count != 0:
+		sys.exit(1)
