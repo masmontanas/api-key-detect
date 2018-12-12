@@ -1,7 +1,7 @@
 import sys, os, re, itertools
 
 ignored = ['.git', 'node_modules', 'bower_components', '.sass-cache', '.png', '.ico', '.mov','.pyc''.pem','env','README.md','__pycache__','tests.py']
-api_key_min_entropy_ratio = 0.4
+api_key_min_entropy_ratio = 0.5
 api_key_min_length = 7
 RESULTS = []
 
